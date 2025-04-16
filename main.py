@@ -33,8 +33,12 @@ class Spotify:
         response = requests.get(f"https://api.spotify.com/v1/playlists/{self.playlist_id}/tracks?market={self.market}&fields=items%28track%28name%2Calbum.artists.name%29%29&limit={limit}&offset={offset}", headers={"Authorization": f"Bearer {token}"})
         return response.json()["items"]
 
-    def _export_to_csv(self):
-        pass
+    def _export_to_file(self, playlist):
+        with open('songs.txt', "w") as file:
+            for song in playlist:
+                artists = [artist["name"] for artist in song["track"]["album"]["artists"]]
+                artists = ", ".join(artists)
+                file.write(f"{artists} - {song['track']['name']}\n")
 
     def start(self):
         token = self._get_bearer()
@@ -45,9 +49,7 @@ class Spotify:
         for batch in range(1, math.ceil(total/50)+1):
             playlist.extend(self._get_playlist(token, limit, offset))
             offset = limit * batch
-            time.sleep(1)
-        print(playlist[0])
-        print(playlist[-1])
+        self._export_to_file(playlist)
 
 
 if "__main__" == __name__:
