@@ -2,7 +2,7 @@
 
 1. Install [Python](https://www.python.org/downloads/)
 2.     pip install python-dotenv
-3.     git clone github.com/sonlar/export-spotify-playlist-to-txt.git
+3.     git clone github.com/sonlar/export-spotify-playlist-to-ytmusic.git
 4. Set up [web API on Spotify](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
 5. Create .env in the same folder as main.py
 6. Insert the following into .env (or plug them directly into the bottom of main.py):
