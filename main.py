@@ -1,7 +1,6 @@
 import base64
 import math
 import requests
-import time
 from dotenv import load_dotenv
 from os import getenv
 
